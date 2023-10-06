@@ -1,5 +1,5 @@
 import { BASE_URL } from '../constants';
-import { Endpoints } from '../endpoints';
+import { Endpoints } from './endpoints';
 
 export async function fetchPageOfPokemons(offset = 0) {
   const serverUrl = new URL(`${BASE_URL}${Endpoints.POKEMON}`);

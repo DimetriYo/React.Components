@@ -1,7 +1,7 @@
 import { ChangeEventHandler, Component, ReactNode } from 'react';
 import style from './styles.module.scss';
-import { SearchInput } from '../SearchInput';
 import { ContentWrapper } from '../ContentWrapper';
+import { SearchInput } from '../SearchInput';
 
 export class Header extends Component {
   state: Readonly<{ userInput: string }> = {
