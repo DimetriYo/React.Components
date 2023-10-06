@@ -13,13 +13,12 @@
   "lint-staged": {
     "*.{tsx,ts}": [
       "eslint --report-unused-disable-directives --max-warnings 0 --fix",
-      "prettier --write"
+      "prettier"
     ]
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^6.0.8"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -38,6 +37,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
+    "sass": "^1.69.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
