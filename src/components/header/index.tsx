@@ -3,7 +3,9 @@ import style from './styles.module.scss';
 import { ContentWrapper } from '../ContentWrapper';
 import { SearchInput } from '../SearchInput';
 
-export class Header extends Component {
+export class Header extends Component<{
+  handleSearchRequestSubmit: (searchRequest: string) => void;
+}> {
   state: Readonly<{ userInput: string }> = {
     userInput: '',
   };
@@ -21,8 +23,7 @@ export class Header extends Component {
 
   handleSubmit = () => {
     localStorage.setItem('lastSearchQuery', this.state.userInput);
-    // eslint-disable-next-line no-console
-    console.log(this.state.userInput);
+    this.props.handleSearchRequestSubmit(this.state.userInput);
   };
 
   render(): ReactNode {
