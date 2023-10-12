@@ -17,7 +17,7 @@ Task made in terms of RSSchool React course.
 
 ### Class components only
 
-According to the task only *class components* are allowed.
+According to the task only _class components_ are allowed.
 
 ### No 'any' allowed
 
