@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
-import { Header } from './components/Header';
-import { Main } from './components/Main';
+import { Header } from './pages/Landing/Header';
+import { Main } from './pages/Landing/Main';
 
 class App extends Component {
   render(): ReactNode {

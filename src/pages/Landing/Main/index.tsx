@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { ContentWrapper } from '../contentWrapper';
+import { ContentWrapper } from '../../../components/ContentWrapper';
 import style from './style.module.scss';
 
 export class Main extends Component {
