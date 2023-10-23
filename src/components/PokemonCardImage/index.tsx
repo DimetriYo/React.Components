@@ -6,10 +6,19 @@ export class PokemonCardImage extends Component<
   Pick<IPokemon, 'sprites' | 'name'>
 > {
   render(): ReactNode {
+    const {
+      front_default,
+      other: {
+        dream_world: { front_default: dream_world_front_default },
+        home: { front_default: home_front_default },
+      },
+    } = this.props.sprites;
+    const src =
+      dream_world_front_default || home_front_default || front_default;
     return (
       <img
         className={style.pokemonImg}
-        src={this.props.sprites.front_default}
+        src={src}
         alt={`Image of ${this.props.name}`}
       />
     );

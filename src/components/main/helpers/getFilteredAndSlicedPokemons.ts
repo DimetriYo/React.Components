@@ -7,7 +7,7 @@ export function getFilteredAndSlicedPokemons({
   searchQuery,
 }: {
   pokemons: IBasicPokemon[];
-  searchQuery?: string;
+  searchQuery: string;
 }) {
   const filteredPokemons = getFilteredPokemonsData({
     pokemonsData,

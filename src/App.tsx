@@ -1,19 +1,16 @@
 import { Component } from 'react';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
-import { IBasicPokemon } from './shared/types/pokemon';
-import { getPokemons } from './helpers/getPokemons';
+import { LOCAL_STORAGE_SEARCH_QUERY } from './constants';
 
 export class App extends Component {
-  state: Readonly<{ pokemons: IBasicPokemon[]; searchQuery: string }> = {
+  state: Readonly<{ searchQuery: string }> = {
     searchQuery: '',
-    pokemons: [],
   };
 
   componentDidMount(): void {
-    getPokemons().then((pokemons) => {
-      this.setState({ ...this.state, pokemons });
-    });
+    const searchQuery = localStorage.getItem(LOCAL_STORAGE_SEARCH_QUERY);
+    this.setState({ ...this.state, searchQuery });
   }
 
   handleSearchRequestSubmit = (newSearchQuery: string) => {
@@ -23,11 +20,11 @@ export class App extends Component {
   render() {
     return (
       <>
-        <Header handleSearchRequestSubmit={this.handleSearchRequestSubmit} />
-        <Main
-          pokemons={this.state.pokemons}
+        <Header
+          handleSearchRequestSubmit={this.handleSearchRequestSubmit}
           searchQuery={this.state.searchQuery}
         />
+        <Main {...this.state} />
       </>
     );
   }
