@@ -1,10 +1,13 @@
-import { StyledContentWrapper } from '../contentWrapper';
-import { StyledHeader } from './styles';
+import { Component, ReactNode } from 'react';
+import { ContentWrapper } from '../contentWrapper';
+import style from './styles.module.scss';
 
-export function Header() {
-  return (
-    <StyledHeader>
-      <StyledContentWrapper>Header</StyledContentWrapper>
-    </StyledHeader>
-  );
+export class Header extends Component {
+  render(): ReactNode {
+    return (
+      <div className={style.headerOuterWrapper}>
+        <ContentWrapper>Header</ContentWrapper>
+      </div>
+    );
+  }
 }

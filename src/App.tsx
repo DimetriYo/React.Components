@@ -1,13 +1,16 @@
-import { Header } from './components/header';
-import { Main } from './components/main';
+import { Component, ReactNode } from 'react';
+import { Header } from './components/Header';
+import { Main } from './components/Main';
 
-function App() {
-  return (
-    <>
-      <Header />
-      <Main />
-    </>
-  );
+class App extends Component {
+  render(): ReactNode {
+    return (
+      <>
+        <Header />
+        <Main />
+      </>
+    );
+  }
 }
 
 export default App;

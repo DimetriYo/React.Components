@@ -1,10 +1,13 @@
-import { StyledContentWrapper } from '../contentWrapper';
-import { StyledMain } from './styles';
+import { Component, ReactNode } from 'react';
+import { ContentWrapper } from '../contentWrapper';
+import style from './style.module.scss';
 
-export function Main() {
-  return (
-    <StyledMain>
-      <StyledContentWrapper>Main</StyledContentWrapper>
-    </StyledMain>
-  );
+export class Main extends Component {
+  render(): ReactNode {
+    return (
+      <div className={style.mainOuterWrapper}>
+        <ContentWrapper>Main</ContentWrapper>
+      </div>
+    );
+  }
 }
