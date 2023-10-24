@@ -1,0 +1,20 @@
+.beerCard {
+  flex-basis: 330px;
+
+  display: grid;
+  grid-template-columns: 100px 1fr;
+
+  padding: 1rem;
+
+  background-color: #c1c1c1;
+  border: 2px solid purple;
+  border-radius: 10px;
+}
+
+.beerCard__img {
+  grid-row: 1 / span 2;
+  justify-self: center;
+  align-self: center;
+
+  height: 100px;
+}
