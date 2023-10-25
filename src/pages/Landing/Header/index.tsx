@@ -1,15 +1,17 @@
 import { Component, ReactNode } from 'react';
 import { ContentWrapper } from '../../../components/ContentWrapper';
-import style from './styles.module.scss';
 import { BeerFilterControls } from '../BeerSearchControls';
+import style from './styles.module.scss';
 
-export class Header extends Component<{ updateFilterTerm: (userInput: string) => void }> {
+export class Header extends Component<{
+  updateAppState: (searchTerm: string) => void;
+}> {
   render(): ReactNode {
     return (
       <div className={style.headerOuterWrapper}>
         <ContentWrapper>
           <div className={style.headerInnerWrapper}>
-            <BeerFilterControls {...this.props} />
+            <BeerFilterControls updateAppState={this.props.updateAppState} />
           </div>
         </ContentWrapper>
       </div>

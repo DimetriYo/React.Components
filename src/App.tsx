@@ -1,21 +1,30 @@
 import { Component, ReactNode } from 'react';
 import { Header } from './pages/Landing/Header';
 import { Main } from './pages/Landing/Main';
-import { LOCAL_STORAGE_SEARCH_TERM } from './constants';
+import { TBeer } from './data/types/beer';
+import { fetchBeersFilteredByName } from './data/api/fetchBeersFilteredByName';
 
 class App extends Component {
-  state: Readonly<{ searchTerm: string }> = { searchTerm: '' };
+  state: Readonly<{
+    beersData: TBeer[];
+  }> = {
+    beersData: [],
+  };
 
-  updateFilterTerm: (userInput: string) => void = (userInput) => {
-    localStorage.setItem(LOCAL_STORAGE_SEARCH_TERM, userInput);
-    this.setState({ ...this.state, searchQuery: userInput });
+  updateAppState: (searchTerm: string) => void = (searchTerm) => {
+    fetchBeersFilteredByName(searchTerm).then((beersData) => {
+      this.setState({
+        ...this.state,
+        beersData,
+      });
+    });
   };
 
   render(): ReactNode {
     return (
       <>
-        <Header updateFilterTerm={this.updateFilterTerm} />
-        <Main {...this.state} />
+        <Header updateAppState={this.updateAppState} />
+        <Main beersData={this.state.beersData} />
       </>
     );
   }
