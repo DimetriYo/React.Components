@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
-import { ContentWrapper } from '../../../components/ContentWrapper';
 import { BeerFilterControls } from '../BeerSearchControls';
 import style from './styles.module.scss';
+import { ContentWrapper } from '../../../components/ContentWrapper';
 
 export class Header extends Component<{
   updateAppState: (searchTerm: string) => void;
