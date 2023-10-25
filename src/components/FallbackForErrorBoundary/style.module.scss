@@ -1,0 +1,53 @@
+.fallbackOuterWrapper {
+  display: flex;
+  align-items: center;
+  
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: rgb(255, 85, 0);
+  background-image: url('../../assets/hellFlames1920.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.fallbackInnerWrapper {
+  padding: 1rem 0.5rem;
+
+  background-color: lightblue;
+
+  border: 2px solid blue;
+  border-radius: 1rem;
+
+  background-image: url('../../assets/serenity.jpg');
+  background-position-y: 20%;
+
+  font-size: 1.2rem;
+
+  animation-name: slidingLeftRight;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 50s;
+}
+
+.recoverBtn {
+  display: block;
+
+  margin: 0 auto;
+
+  font-size: 2rem;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+@keyframes slidingLeftRight {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}

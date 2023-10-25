@@ -9,6 +9,12 @@ class ErrorBoundary extends Component<PropsWithChildren & { fallback: JSX.Elemen
 
   componentDidCatch(error: Error) {
     console.log(error);
+    console.log(
+      `Don't worry.This is just a simple error.\n
+      We're already on it.\n
+      We appologise for the incovenience caused.\n
+      Have a cosy day!`
+    );
   }
 
   render() {
