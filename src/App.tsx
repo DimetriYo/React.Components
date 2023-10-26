@@ -4,6 +4,7 @@ import { Main } from './pages/Landing/Main';
 import { TBeer } from './data/types/beer';
 import { fetchBeersFilteredByName } from './data/api/fetchBeersFilteredByName';
 import { ContentLoader } from './components/ContentLoader';
+import { PreLoader } from './components/PreLoader';
 
 class App extends Component {
   state: Readonly<{
@@ -31,6 +32,7 @@ class App extends Component {
         <Header updateAppState={this.updateAppState} />
         <Main beersData={this.state.beersData} />
         {this.state.isContentLoading && <ContentLoader />}
+        <PreLoader />
       </>
     );
   }
