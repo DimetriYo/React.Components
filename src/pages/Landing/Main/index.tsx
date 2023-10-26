@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { ContentWrapper } from '../../../components/ContentWrapper';
+import { ContentWrapper } from '../../../components/Porn';
 import style from './style.module.scss';
 import { TBeer } from '../../../data/types/beer';
 import { BeerCard } from '../BeerCard';

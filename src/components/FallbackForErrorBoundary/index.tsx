@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { ContentWrapper } from '../ContentWrapper';
+import { ContentWrapper } from '../Porn';
 import style from './style.module.scss';
 
 export class FallbackForErrorBoundary extends Component {
