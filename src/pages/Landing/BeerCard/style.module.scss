@@ -1,5 +1,6 @@
 .beerCard {
   flex-basis: 330px;
+  flex-grow: 1;
 
   display: grid;
   grid-template-columns: 100px 1fr;
