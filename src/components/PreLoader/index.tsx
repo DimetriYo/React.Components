@@ -12,3 +12,5 @@ export class PreLoader extends Component {
     );
   }
 }
+
+export { massageKitty, emptyPokets };
