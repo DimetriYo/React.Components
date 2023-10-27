@@ -5,31 +5,54 @@ import { TBeer } from './data/types/beer';
 import { fetchBeersFilteredByName } from './data/api/fetchBeersFilteredByName';
 import { ContentLoader } from './components/ContentLoader';
 import { PreLoader } from './components/PreLoader';
+import { SearchTermContext } from './pages/Landing/context';
 
 class App extends Component {
+  updateAppState: (searchTerm: string) => void;
   state: Readonly<{
     beersData: TBeer[];
     isContentLoading: boolean;
-  }> = {
-    beersData: [],
-    isContentLoading: false,
-  };
+    updateAppState: (searchTerm: string) => void;
+  }>;
 
-  updateAppState: (searchTerm: string) => void = (searchTerm) => {
-    this.setState({ ...this.state, isContentLoading: true });
-    fetchBeersFilteredByName(searchTerm).then((beersData) => {
-      this.setState({
-        ...this.state,
-        beersData,
-        isContentLoading: false,
+  constructor(props: never) {
+    super(props);
+
+    this.updateAppState = (searchTerm: string) => {
+      this.setState({ ...this.state, isContentLoading: true });
+      fetchBeersFilteredByName(searchTerm).then((beersData) => {
+        this.setState({
+          ...this.state,
+          beersData,
+          isContentLoading: false,
+        });
       });
-    });
-  };
+    };
+
+    this.state = {
+      beersData: [],
+      isContentLoading: false,
+      updateAppState: this.updateAppState,
+    };
+  }
+
+  // updateAppState: (searchTerm: string) => void = (searchTerm) => {
+  //   this.setState({ ...this.state, isContentLoading: true });
+  //   fetchBeersFilteredByName(searchTerm).then((beersData) => {
+  //     this.setState({
+  //       ...this.state,
+  //       beersData,
+  //       isContentLoading: false,
+  //     });
+  //   });
+  // };
 
   render(): ReactNode {
     return (
       <>
-        <Header updateAppState={this.updateAppState} />
+        <SearchTermContext.Provider value={this.state}>
+          <Header />
+        </SearchTermContext.Provider>
         <Main beersData={this.state.beersData} />
         {this.state.isContentLoading && <ContentLoader />}
         <PreLoader />

@@ -1,10 +1,11 @@
 import { ChangeEventHandler, Component, ReactNode } from 'react';
 import style from './style.module.scss';
 import { LOCAL_STORAGE_SEARCH_TERM } from '../../../constants';
+import { SearchTermContext } from '../context';
 
-export class BeerFilterControls extends Component<{
-  updateAppState: (searchTerm: string) => void;
-}> {
+export class BeerFilterControls extends Component {
+  static context = SearchTermContext;
+  declare context: React.ContextType<typeof SearchTermContext>;
   state: Readonly<{ userInput: string }> = {
     userInput: '',
   };
@@ -12,7 +13,7 @@ export class BeerFilterControls extends Component<{
   componentDidMount(): void {
     const oldSearchTerm = localStorage.getItem(LOCAL_STORAGE_SEARCH_TERM) || '';
     this.setState({ ...this.state, userInput: oldSearchTerm });
-    this.props.updateAppState(oldSearchTerm);
+    this.context.updateAppState(oldSearchTerm);
   }
 
   handleInputChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
@@ -22,7 +23,7 @@ export class BeerFilterControls extends Component<{
   handleFilterBtnClick: () => void = () => {
     const newUserInput = this.state.userInput;
     localStorage.setItem(LOCAL_STORAGE_SEARCH_TERM, newUserInput);
-    this.props.updateAppState(newUserInput);
+    this.context.updateAppState(newUserInput);
   };
 
   render(): ReactNode {

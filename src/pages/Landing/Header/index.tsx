@@ -4,15 +4,13 @@ import style from './styles.module.scss';
 import { ContentWrapper } from '../../../components/ContentWrapper';
 import { ErrorGeneratingBtn } from '../ErrorGeneratingBtn';
 
-export class Header extends Component<{
-  updateAppState: (searchTerm: string) => void;
-}> {
+export class Header extends Component {
   render(): ReactNode {
     return (
       <div className={style.headerOuterWrapper}>
         <ContentWrapper>
           <div className={style.headerInnerWrapper}>
-            <BeerFilterControls updateAppState={this.props.updateAppState} />
+            <BeerFilterControls />
             <ErrorGeneratingBtn />
           </div>
         </ContentWrapper>
