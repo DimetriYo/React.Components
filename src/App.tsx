@@ -1,41 +1,34 @@
-import { Component, ReactNode } from 'react';
 import { Header } from './pages/Landing/Header';
 import { Main } from './pages/Landing/Main';
 import { TBeer } from './data/types/beer';
 import { fetchBeersFilteredByName } from './data/api/fetchBeersFilteredByName';
 import { ContentLoader } from './components/ContentLoader';
 import { PreLoader } from './components/PreLoader';
+import { useState } from 'react';
 
-class App extends Component {
-  state: Readonly<{
-    beersData: TBeer[];
-    isContentLoading: boolean;
-  }> = {
-    beersData: [],
-    isContentLoading: false,
-  };
+function App() {
+  const [beersData, setBeersData] = useState<TBeer[]>([]);
+  const [isContentLoading, setIsContentLoading] = useState<boolean>(false);
 
-  updateAppState: (searchTerm: string) => void = (searchTerm) => {
-    this.setState({ ...this.state, isContentLoading: true });
-    fetchBeersFilteredByName(searchTerm).then((beersData) => {
-      this.setState({
-        ...this.state,
-        beersData,
-        isContentLoading: false,
+  const updateAppState: (searchTerm: string) => void = (searchTerm) => {
+    setIsContentLoading(true);
+    fetchBeersFilteredByName(searchTerm)
+      .then((newBeersData) => {
+        setBeersData(newBeersData);
+      })
+      .finally(() => {
+        setIsContentLoading(false);
       });
-    });
   };
 
-  render(): ReactNode {
-    return (
-      <>
-        <Header updateAppState={this.updateAppState} />
-        <Main beersData={this.state.beersData} />
-        {this.state.isContentLoading && <ContentLoader />}
-        <PreLoader />
-      </>
-    );
-  }
+  return (
+    <>
+      <Header updateAppState={updateAppState} />
+      <Main beersData={beersData} />
+      {isContentLoading && <ContentLoader />}
+      <PreLoader />
+    </>
+  );
 }
 
 export default App;

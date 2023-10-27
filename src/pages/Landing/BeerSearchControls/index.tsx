@@ -1,43 +1,40 @@
-import { ChangeEventHandler, Component, ReactNode } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import style from './style.module.scss';
 import { LOCAL_STORAGE_SEARCH_TERM } from '../../../constants';
 
-export class BeerFilterControls extends Component<{
+export function BeerFilterControls({
+  updateAppState,
+}: {
   updateAppState: (searchTerm: string) => void;
-}> {
-  state: Readonly<{ userInput: string }> = {
-    userInput: '',
-  };
+}) {
+  const [userInput, setUserInput] = useState<string>('');
 
-  componentDidMount(): void {
+  useEffect(() => {
     const oldSearchTerm = localStorage.getItem(LOCAL_STORAGE_SEARCH_TERM) || '';
-    this.setState({ ...this.state, userInput: oldSearchTerm });
-    this.props.updateAppState(oldSearchTerm);
-  }
+    setUserInput(oldSearchTerm);
+    updateAppState(oldSearchTerm);
+  }, []);
 
-  handleInputChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
-    this.setState({ ...this.state, userInput: value });
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+    setUserInput(value);
   };
 
-  handleFilterBtnClick: () => void = () => {
-    const newUserInput = this.state.userInput;
-    localStorage.setItem(LOCAL_STORAGE_SEARCH_TERM, newUserInput);
-    this.props.updateAppState(newUserInput);
+  const handleFilterBtnClick: () => void = () => {
+    localStorage.setItem(LOCAL_STORAGE_SEARCH_TERM, userInput);
+    updateAppState(userInput);
   };
 
-  render(): ReactNode {
-    return (
-      <div className={style.beerSearchControllsWrapper}>
-        <input
-          type="text"
-          value={this.state.userInput}
-          onChange={this.handleInputChange}
-          placeholder="Beer name or part of it"
-        />
-        <button type="button" onClick={this.handleFilterBtnClick}>
-          Filter
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className={style.beerSearchControllsWrapper}>
+      <input
+        type="text"
+        value={userInput}
+        onChange={handleInputChange}
+        placeholder="Beer name or part of it"
+      />
+      <button type="button" onClick={handleFilterBtnClick}>
+        Filter
+      </button>
+    </div>
+  );
 }

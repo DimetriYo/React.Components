@@ -1,22 +1,17 @@
-import { Component, ReactNode } from 'react';
 import { BeerFilterControls } from '../BeerSearchControls';
 import style from './styles.module.scss';
 import { ContentWrapper } from '../../../components/ContentWrapper';
 import { ErrorGeneratingBtn } from '../ErrorGeneratingBtn';
 
-export class Header extends Component<{
-  updateAppState: (searchTerm: string) => void;
-}> {
-  render(): ReactNode {
-    return (
-      <div className={style.headerOuterWrapper}>
-        <ContentWrapper>
-          <div className={style.headerInnerWrapper}>
-            <BeerFilterControls updateAppState={this.props.updateAppState} />
-            <ErrorGeneratingBtn />
-          </div>
-        </ContentWrapper>
-      </div>
-    );
-  }
+export function Header({ updateAppState }: { updateAppState: (searchTerm: string) => void }) {
+  return (
+    <div className={style.headerOuterWrapper}>
+      <ContentWrapper>
+        <div className={style.headerInnerWrapper}>
+          <BeerFilterControls updateAppState={updateAppState} />
+          <ErrorGeneratingBtn />
+        </div>
+      </ContentWrapper>
+    </div>
+  );
 }
