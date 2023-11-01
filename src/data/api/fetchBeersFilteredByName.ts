@@ -3,8 +3,9 @@ import { TBeer } from '../types/beer';
 
 export async function fetchBeersFilteredByName(beerName = ''): Promise<TBeer[]> {
   const url = new URL(ROOT_ENDPOINT, BASE_URL);
-  if (!!beerName) {
-    url.searchParams.set('beer_name', beerName.trim().replaceAll(/\s+/g, '_'));
+  const trimmedBeerName = beerName.trim();
+  if (!!trimmedBeerName) {
+    url.searchParams.set('beer_name', trimmedBeerName.replaceAll(/\s+/g, '_'));
   }
   const response = await fetch(url);
   const beersData = (await response.json()) as TBeer[];
