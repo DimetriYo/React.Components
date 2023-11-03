@@ -1,33 +1,11 @@
-import { Header } from './pages/Landing/Header';
-import { Main } from './pages/Landing/Main';
-import { TBeer } from './data/types/beer';
-import { fetchBeersFilteredByName } from './data/api/fetchBeersFilteredByName';
-import { ContentLoader } from './components/ContentLoader';
-import { PreLoader } from './components/PreLoader';
-import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Landing } from './pages/Landing';
 
 function App() {
-  const [beersData, setBeersData] = useState<TBeer[]>([]);
-  const [isContentLoading, setIsContentLoading] = useState<boolean>(false);
-
-  const updateAppState: (searchTerm: string) => void = (searchTerm) => {
-    setIsContentLoading(true);
-    fetchBeersFilteredByName(searchTerm)
-      .then((newBeersData) => {
-        setBeersData(newBeersData);
-      })
-      .finally(() => {
-        setIsContentLoading(false);
-      });
-  };
-
   return (
-    <>
-      <Header updateAppState={updateAppState} />
-      <Main beersData={beersData} />
-      {isContentLoading && <ContentLoader />}
-      <PreLoader />
-    </>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+    </Routes>
   );
 }
 
