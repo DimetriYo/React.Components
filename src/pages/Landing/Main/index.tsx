@@ -1,17 +1,17 @@
 import { ContentWrapper } from '../../../components/ContentWrapper';
 import style from './style.module.scss';
-import { TBeer } from '../../../data/types/beer';
-import { BeerCard } from '../BeerCard';
+import { TCharacter } from '../../../data/types/character';
+import { CharacterCard } from '../CharacterCard';
 import { NothingFoundBackup } from '../NothingFoundBackup';
 
-export function Main({ beersData }: { beersData: TBeer[] }) {
-  const beersDataLength = beersData.length;
+export function Main({ charactersData }: { charactersData: TCharacter[] }) {
+  const beersDataLength = charactersData.length;
   return (
     <div className={style.mainOuterWrapper}>
       <ContentWrapper>
         <div className={style.mainInnerWrapper}>
-          {beersData.map((beer) => (
-            <BeerCard key={beer.id} {...beer} />
+          {charactersData.map((character) => (
+            <CharacterCard key={character.id} {...character} />
           ))}
           {!beersDataLength && <NothingFoundBackup />}
         </div>
