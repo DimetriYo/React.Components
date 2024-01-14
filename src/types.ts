@@ -1,7 +1,7 @@
 export type TCharacter = {
   id: number;
   name: string;
-  status: 'Alive'| 'Dead'| 'unknown';
+  status: 'Alive' | 'Dead' | 'unknown';
   species: string;
   type: string;
   gender: string;
@@ -10,4 +10,9 @@ export type TCharacter = {
   image: string;
   episode: string[];
   url: string;
+};
+
+export type TAppState = {
+  characters: TCharacter[];
+  totalPagesCount: number;
 };

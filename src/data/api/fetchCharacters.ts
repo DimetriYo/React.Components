@@ -1,5 +1,5 @@
 import { BASE_URL, ROOT_ENDPOINT } from '../../constants';
-import { TCharacter } from '../types/character';
+import { TCharacter } from '../../types';
 
 type TResponse = {
   info: {
@@ -11,11 +11,23 @@ type TResponse = {
   results: TCharacter[];
 };
 
-export async function fetchCharacters(characterName = ''): Promise<TResponse> {
+export async function fetchCharacters({
+  searchTerm = '',
+  page = 1,
+}: {
+  searchTerm: string | null;
+  page: number | null;
+}): Promise<TResponse> {
   const url = new URL(ROOT_ENDPOINT, BASE_URL);
-  if (!!characterName) {
-    url.searchParams.set('name', characterName.trim().replaceAll(/\s+/g, '_'));
+
+  if (!!page) {
+    url.searchParams.set('page', page.toString());
   }
+
+  if (!!searchTerm) {
+    url.searchParams.set('name', searchTerm.trim());
+  }
+
   const response = await fetch(url);
   if (response.status >= 400) {
     const nothingFoundResponse = {

@@ -1,14 +1,14 @@
-import { BeerFilterControls } from '../BeerSearchControls';
+import { BeerFilterControls } from '../CharacterSearchControls';
 import style from './styles.module.scss';
 import { ContentWrapper } from '../../../components/ContentWrapper';
 import { ErrorGeneratingBtn } from '../ErrorGeneratingBtn';
 
-export function Header(props: { updateAppState: (searchTerm: string) => void }) {
+export function Header() {
   return (
     <div className={style.headerOuterWrapper}>
       <ContentWrapper>
         <div className={style.headerInnerWrapper}>
-          <BeerFilterControls {...props} />
+          <BeerFilterControls />
           <ErrorGeneratingBtn />
         </div>
       </ContentWrapper>

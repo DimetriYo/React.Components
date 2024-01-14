@@ -5,8 +5,7 @@
 
 .mainInnerWrapper {
   padding: 2rem 0 1rem;
-
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 2rem;
 }

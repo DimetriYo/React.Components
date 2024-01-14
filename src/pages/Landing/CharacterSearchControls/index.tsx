@@ -1,18 +1,16 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import style from './style.module.scss';
 import { LOCAL_STORAGE_SEARCH_TERM } from '../../../constants';
+import { useSearchParams } from 'react-router-dom';
 
-export function BeerFilterControls({
-  updateAppState,
-}: {
-  updateAppState: (searchTerm: string) => void;
-}) {
+export function BeerFilterControls() {
   const [userInput, setUserInput] = useState<string>('');
+  const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const oldSearchTerm = localStorage.getItem(LOCAL_STORAGE_SEARCH_TERM) || '';
     setUserInput(oldSearchTerm);
-    updateAppState(oldSearchTerm);
+    if (oldSearchTerm) setSearchParams({ searchTerm: oldSearchTerm });
   }, []);
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
@@ -21,7 +19,7 @@ export function BeerFilterControls({
 
   const handleFilterBtnClick: () => void = () => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH_TERM, userInput);
-    updateAppState(userInput);
+    setSearchParams({ searchTerm: userInput });
   };
 
   return (

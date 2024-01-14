@@ -1,4 +1,4 @@
-import { TCharacter } from '../../../data/types/character';
+import { TCharacter } from '../../../types';
 import style from './style.module.scss';
 
 export function CharacterCard({ name, image }: TCharacter) {
