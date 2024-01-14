@@ -4,14 +4,14 @@ import { TCharacter } from '../types/character';
 type TResponse = {
   info: object;
   results: TCharacter[];
-}
+};
 
 export async function fetchCharacters(beerName = ''): Promise<TResponse> {
   const url = new URL(ROOT_ENDPOINT, BASE_URL);
   if (!!beerName) {
-    url.searchParams.set('beer_name', beerName.trim().replaceAll(/\s+/g, '_'));
+    url.searchParams.set('name', beerName.trim().replaceAll(/\s+/g, '_'));
   }
   const response = await fetch(url);
-  const beersData = (await response.json()) as TResponse;
-  return beersData;
+  const characterData = (await response.json()) as TResponse;
+  return characterData;
 }
