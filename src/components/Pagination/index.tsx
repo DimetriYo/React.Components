@@ -1,6 +1,6 @@
 import { PaginationCircle } from './PaginationCircle';
 import { useSearchParams } from 'react-router-dom';
-import style from './style.module.scss';
+import style from './style.module.css';
 
 export function Pagination({ pagesCount }: { pagesCount: number }) {
   const [searchParams, setSearchParams] = useSearchParams();

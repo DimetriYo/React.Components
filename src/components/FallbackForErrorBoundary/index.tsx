@@ -1,5 +1,5 @@
 import { ContentWrapper } from '../ContentWrapper';
-import style from './style.module.scss';
+import style from './style.module.css';
 
 export function FallbackForErrorBoundary() {
   const handleRecoverBtnClick = () => {

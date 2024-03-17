@@ -1,4 +1,4 @@
-import style from './style.module.scss';
+import style from './style.module.css';
 import { BodyBlinder } from '../BodyBlinder';
 import { massageKitty } from '../PreLoader';
 

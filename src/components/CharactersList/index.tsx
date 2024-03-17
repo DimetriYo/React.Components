@@ -1,17 +1,15 @@
-import { TCharacter } from '../../types';
-import { CharacterCard } from '../../pages/Landing/CharacterCard';
-import { NothingFoundBackup } from '../../pages/Landing/NothingFoundBackup';
-import style from './style.module.scss';
+// import { TCharacter } from '../../types';
+import style from './style.module.css';
 
-export function CharactersList({ characters }: { characters: TCharacter[] }) {
-  const charactersDataLength = characters.length;
+export function CharactersList() {
+  // const charactersDataLength = characters.length;
 
   return (
     <div className={style.charactersList}>
-      {characters.map((character) => (
+      {/* {characters.map((character) => (
         <CharacterCard key={character.id} {...character} />
       ))}
-      {!charactersDataLength && <NothingFoundBackup />}
+      {!charactersDataLength && <NothingFoundBackup />} */}
     </div>
   );
 }
