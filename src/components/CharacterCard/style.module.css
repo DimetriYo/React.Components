@@ -1,0 +1,6 @@
+.characterCard {
+  @apply max-w-48 pb-4 overflow-hidden;
+  @apply flex flex-col gap-4;
+  @apply bg-teal-700 text-white text-xl;
+  @apply border-2 border-purple-800 border-solid rounded-md;
+}

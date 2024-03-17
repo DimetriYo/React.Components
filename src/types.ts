@@ -16,3 +16,5 @@ export type TAppState = {
   characters: TCharacter[];
   totalPagesCount: number;
 };
+
+export type SearchParams = { searchTerm?: string; page?: string };

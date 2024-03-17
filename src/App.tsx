@@ -1,10 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
+import { Layout } from './components/Layout';
+import { CharactersList } from './components/CharactersList';
+import { CharactersProvider } from './features/CharactersProvider';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<div className="w-24 h-24 bg-red-700" />} />
-    </Routes>
+    <CharactersProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<CharactersList />} />
+        </Route>
+      </Routes>
+    </CharactersProvider>
   );
 }
 

@@ -1,5 +1,5 @@
-import { BASE_URL, ROOT_ENDPOINT } from '../../constants';
-import { TCharacter } from '../../types';
+import { BASE_URL, ROOT_ENDPOINT } from '../constants';
+import { SearchParams, TCharacter } from '../types';
 
 type TResponse = {
   info: {
@@ -13,18 +13,15 @@ type TResponse = {
 
 export async function fetchCharacters({
   searchTerm = '',
-  page = 1,
-}: {
-  searchTerm: string | null;
-  page: number | null;
-}): Promise<TResponse> {
+  page = '1',
+}: SearchParams): Promise<TResponse> {
   const url = new URL(ROOT_ENDPOINT, BASE_URL);
 
-  if (!!page) {
-    url.searchParams.set('page', page.toString());
+  if (page) {
+    url.searchParams.set('page', page);
   }
 
-  if (!!searchTerm) {
+  if (searchTerm) {
     url.searchParams.set('name', searchTerm.trim());
   }
 

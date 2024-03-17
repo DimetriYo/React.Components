@@ -1,5 +1,5 @@
 .charactersList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  @apply flex gap-4 flex-wrap items-center justify-center;
+  @apply p-4 h-full;
+  @apply bg-yellow-500;
 }

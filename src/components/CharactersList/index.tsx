@@ -1,15 +1,15 @@
-// import { TCharacter } from '../../types';
+import { useCharacters } from '../../features/CharactersProvider';
+import { CharacterCard } from '../CharacterCard';
 import style from './style.module.css';
 
 export function CharactersList() {
-  // const charactersDataLength = characters.length;
+  const characters = useCharacters();
 
   return (
     <div className={style.charactersList}>
-      {/* {characters.map((character) => (
+      {characters.map((character) => (
         <CharacterCard key={character.id} {...character} />
       ))}
-      {!charactersDataLength && <NothingFoundBackup />} */}
     </div>
   );
 }

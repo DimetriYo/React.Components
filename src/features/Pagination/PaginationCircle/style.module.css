@@ -1,0 +1,16 @@
+.circle {
+  @apply w-8 h-8;
+  @apply flex items-center justify-center;
+  @apply border-2 border-solid border-purple-900 rounded;
+  @apply transition;
+}
+
+.circleNormal {
+  @apply bg-cyan-400;
+  @apply cursor-pointer;
+  @apply hover:bg-blue-600 hover:text-white;
+}
+
+.circleActive {
+  @apply bg-blue-900 text-white;
+}
