@@ -21,8 +21,8 @@ export async function fetchCharacters({
     url.searchParams.set('page', page);
   }
 
-  if (searchTerm) {
-    url.searchParams.set('name', searchTerm.trim());
+  if (searchTerm && searchTerm.trim()) {
+    url.searchParams.set('name', searchTerm);
   }
 
   const response = await fetch(url);

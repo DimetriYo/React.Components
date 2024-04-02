@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { CharactersList } from './components/CharactersList';
 import { CharactersProvider } from './features/CharactersProvider';
+import { CharacterDetailCard } from './components/CharacterDetailCard';
 
 function App() {
   return (
     <CharactersProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<CharactersList />} />
+          <Route path=":characterId" element={<CharacterDetailCard />} />
         </Route>
       </Routes>
     </CharactersProvider>

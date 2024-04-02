@@ -13,7 +13,7 @@ export function SearchField() {
     const newSearchParams: SearchParams = {};
 
     if (page) newSearchParams.page = page;
-    if (searchTerm) newSearchParams.searchTerm = searchTerm;
+    newSearchParams.searchTerm = searchTerm;
 
     setSearchParams(newSearchParams);
   };

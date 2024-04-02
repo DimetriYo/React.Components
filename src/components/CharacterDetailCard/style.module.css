@@ -1,0 +1,3 @@
+.wrapper {
+  @apply flex flex-col justify-center items-center relative basis-1/2 bg-orange-200 border-l-4 border-l-purple-700;
+}
