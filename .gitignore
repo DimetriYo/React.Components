@@ -26,3 +26,6 @@ dist-ssr
 # Project dirs
 yarn.lock
 testData.json
+
+# Tests
+coverage
