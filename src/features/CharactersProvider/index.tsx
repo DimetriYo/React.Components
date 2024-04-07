@@ -2,6 +2,7 @@ import { PropsWithChildren, createContext, useContext, useEffect, useState } fro
 import { TCharacter } from '../../types';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCharacters } from '../../api/fetchCharacters';
+import { useSearchTerm } from '../SearchTermProvider';
 
 export const CharactersContext = createContext<TCharacter[]>([]);
 export const PagesCountContext = createContext<number>(0);
@@ -13,9 +14,9 @@ export function CharactersProvider({ children }: PropsWithChildren) {
   const [characters, setCharacters] = useState<TCharacter[]>([]);
   const [pagesCount, setPagesCount] = useState<number>(0);
   const [searchParams] = useSearchParams();
+  const searchTerm = useSearchTerm();
 
   const page = searchParams.get('page') || undefined;
-  const searchTerm = searchParams.get('searchTerm') || undefined;
 
   useEffect(() => {
     fetchCharacters({ page, searchTerm }).then(({ info: { pages }, results }) => {
