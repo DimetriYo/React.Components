@@ -1,16 +1,14 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useCharacters } from '../../features/CharactersProvider';
+import { useNavigate, useParams } from 'react-router-dom';
 import style from './style.module.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { TCharacter } from '../../types';
+import { fetchCharacterById } from '../../api/fetchCharacterById';
 
 export function CharacterDetailCard() {
-  const { characterId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const characterNumber = Number(characterId);
-  const characters = useCharacters();
-  const detailedCharacter = characters.find(({ id }) => characterNumber === id);
+  const { characterId } = useParams();
   const clickCounterRef = useRef(0);
+  const [details, setDetails] = useState<TCharacter>();
 
   const hideDetails = () => {
     navigate({ pathname: '/', search: location.search });
@@ -25,16 +23,23 @@ export function CharacterDetailCard() {
   };
 
   useEffect(() => {
+    if (!characterId) return;
+    fetchCharacterById(characterId).then((character) => setDetails(character));
     window.addEventListener('click', handleClickWhenCardShown);
 
     return () => window.removeEventListener('click', handleClickWhenCardShown);
   }, []);
 
-  if (!detailedCharacter) return null;
-  const { name, image, gender } = detailedCharacter;
+  useEffect(() => {
+    if (!characterId) return;
+    fetchCharacterById(characterId).then(setDetails);
+  }, [characterId]);
+
+  if (!details) return;
+  const { name, image, gender } = details;
 
   return (
-    <div className={style.wrapper} id="character-details">
+    <div data-testid="details-card" className={style.wrapper} id="character-details">
       <button
         onClick={hideDetails}
         className="absolute top-4 left-4 px-2 bg-blue-200 rounded-md border-2 border-solid border-slate-700 hover:bg-blue-600"

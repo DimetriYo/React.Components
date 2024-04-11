@@ -1,39 +1,44 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { CharacterCard } from '.';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { CharacterDetailCard } from '../CharacterDetailCard';
-import { testedCharacter } from '../../tests/testedCharacter';
+import { server } from '../../tests/mockServerNode';
+import { testCharacter } from '../../tests/mockCharacter';
+
+beforeEach(() => {
+  server.listen();
+});
 
 afterEach(() => {
-  cleanup();
+  document.body.innerHTML = '';
 });
 
 describe('Character card', () => {
   it('should create card with mock data', () => {
-    const { getByAltText } = render(
+    render(
       <MemoryRouter>
-        <CharacterCard {...testCharacterData} />
+        <CharacterCard {...testCharacter} />
       </MemoryRouter>
     );
 
-    expect(getByAltText('TestVasya photo')).toBeInTheDocument();
+    expect(screen.getByAltText('TestVasya photo')).toBeInTheDocument();
   });
 
   it('should open details on card click', async () => {
-    const { getByRole, findByTestId, getByTestId } = render(
+    render(
       <MemoryRouter>
         <Routes>
-          <Route path="/" element={<CharacterCard {...testedCharacter} />} />
+          <Route path="/" element={<CharacterCard {...testCharacter} />} />
           <Route path="/:characterId" element={<CharacterDetailCard />} />
         </Routes>
       </MemoryRouter>
     );
-    const card = getByRole('link');
+    const card = screen.getByRole('link');
 
     fireEvent.click(card);
-    await findByTestId('details-card');
+    await screen.findByTestId('details-card');
 
-    expect(getByTestId('details-card')).toBeInTheDocument();
+    expect(screen.getByTestId('details-card')).toBeInTheDocument();
   });
 });

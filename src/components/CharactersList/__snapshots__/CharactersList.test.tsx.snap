@@ -1,49 +1,87 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Character card > should create card with mock data 1`] = `
+exports[`Characters list > shold render 1 card 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <a
-        href="/12345"
+      <div
+        class="max-h-full overflow-y-scroll flex-grow basis-1/2"
       >
-        <figure
-          class="_characterCard_ce7192"
-          data-character-card="true"
+        <div
+          class="flex gap-4 flex-wrap items-center justify-center p-4"
         >
-          <img
-            alt="TestVasya photo"
-            src="/src/assets/nothingFound.png"
-          />
-          <figcaption
-            class="text-center"
+          <div>
+            <img
+              alt="Sorry, but nothing has been found."
+              src="/src/assets/nothingFound.png"
+            />
+            <h4>
+              Sorry,
+            </h4>
+            <p>
+              we couldn’t find anything fitting the search term.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="max-h-full overflow-y-scroll flex-grow basis-1/2"
+      >
+        <div
+          class="flex gap-4 flex-wrap items-center justify-center p-4"
+        >
+          <a
+            href="/0"
           >
-            TestVasya
-          </figcaption>
-        </figure>
-      </a>
+            <figure
+              class="_characterCard_ce7192"
+              data-character-card="true"
+            >
+              <img
+                alt="TestChar photo"
+                src=""
+              />
+              <figcaption
+                class="text-center"
+              >
+                TestChar
+              </figcaption>
+            </figure>
+          </a>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <a
-      href="/12345"
+    <div
+      class="max-h-full overflow-y-scroll flex-grow basis-1/2"
     >
-      <figure
-        class="_characterCard_ce7192"
-        data-character-card="true"
+      <div
+        class="flex gap-4 flex-wrap items-center justify-center p-4"
       >
-        <img
-          alt="TestVasya photo"
-          src="/src/assets/nothingFound.png"
-        />
-        <figcaption
-          class="text-center"
+        <a
+          href="/0"
         >
-          TestVasya
-        </figcaption>
-      </figure>
-    </a>
+          <figure
+            class="_characterCard_ce7192"
+            data-character-card="true"
+          >
+            <img
+              alt="TestChar photo"
+              src=""
+            />
+            <figcaption
+              class="text-center"
+            >
+              TestChar
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

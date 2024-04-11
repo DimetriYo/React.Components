@@ -18,3 +18,7 @@ export type TAppState = {
 };
 
 export type SearchParams = { searchTerm?: string; page?: string };
+
+export type CharacterNotFoundResponse = {
+  error: 'Character not found';
+};
