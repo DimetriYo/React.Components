@@ -1,4 +1,3 @@
-// import { ErrorResponse } from 'react-router-dom';
 import { BASE_URL, ROOT_ENDPOINT } from '../constants';
 import { TCharacter } from '../types';
 

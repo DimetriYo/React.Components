@@ -1,13 +1,13 @@
 import testImage from '../assets/nothingFound.png';
 import { TCharacter } from '../types';
 
-export const testCharacter: TCharacter = {
+export const testedCharacter: TCharacter = {
   id: 12345,
   name: 'TestVasya',
-  status: 'Alive',
+  status: 'unknown',
   species: 'TestSpecies',
   type: '',
-  gender: 'Test',
+  gender: 'Test gender',
   origin: {
     name: 'Test Earth',
     url: 'https://TestLocation',

@@ -4,7 +4,7 @@ import { CharacterCard } from '.';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { CharacterDetailCard } from '../CharacterDetailCard';
 import { server } from '../../tests/mockServerNode';
-import { testCharacter } from '../../tests/mockCharacter';
+import { testedCharacter } from '../../tests/testedCharacter';
 
 beforeEach(() => {
   server.listen();
@@ -18,7 +18,7 @@ describe('Character card', () => {
   it('should create card with mock data', () => {
     render(
       <MemoryRouter>
-        <CharacterCard {...testCharacter} />
+        <CharacterCard {...testedCharacter} />
       </MemoryRouter>
     );
 
@@ -29,7 +29,7 @@ describe('Character card', () => {
     render(
       <MemoryRouter>
         <Routes>
-          <Route path="/" element={<CharacterCard {...testCharacter} />} />
+          <Route path="/" element={<CharacterCard {...testedCharacter} />} />
           <Route path="/:characterId" element={<CharacterDetailCard />} />
         </Routes>
       </MemoryRouter>
