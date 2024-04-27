@@ -9,7 +9,9 @@ export function CharacterCard({ name, image, id }: TCharacter) {
     <Link to={{ pathname: `${id}`, search }}>
       <figure data-character-card className={style.characterCard}>
         <img src={image} alt={`${name} photo`} />
-        <figcaption className="text-center">{name}</figcaption>
+        <figcaption data-testid="character-name" className="text-center">
+          {name}
+        </figcaption>
       </figure>
     </Link>
   );

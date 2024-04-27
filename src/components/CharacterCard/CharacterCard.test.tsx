@@ -1,28 +1,25 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { CharacterCard } from '.';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { CharacterDetailCard } from '../CharacterDetailCard';
-import { server } from '../../tests/mockServerNode';
 import { testedCharacter } from '../../tests/testedCharacter';
 
-beforeEach(() => {
-  server.listen();
-});
-
 afterEach(() => {
-  document.body.innerHTML = '';
+  cleanup();
 });
 
 describe('Character card', () => {
-  it('should create card with mock data', () => {
+  it(`should render character card with character name ${testedCharacter.name}`, () => {
     render(
       <MemoryRouter>
         <CharacterCard {...testedCharacter} />
       </MemoryRouter>
     );
 
-    expect(screen.getByAltText('TestVasya photo')).toBeInTheDocument();
+    expect(screen.queryByTestId('character-name')).toHaveTextContent(
+      `${testedCharacter.name}`
+    );
   });
 
   it('should open details on card click', async () => {

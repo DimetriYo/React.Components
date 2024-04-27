@@ -11,28 +11,6 @@ exports[`Characters list > shold render 1 card 1`] = `
         <div
           class="flex gap-4 flex-wrap items-center justify-center p-4"
         >
-          <div>
-            <img
-              alt="Sorry, but nothing has been found."
-              src="/src/assets/nothingFound.png"
-            />
-            <h4>
-              Sorry,
-            </h4>
-            <p>
-              we couldn’t find anything fitting the search term.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div
-        class="max-h-full overflow-y-scroll flex-grow basis-1/2"
-      >
-        <div
-          class="flex gap-4 flex-wrap items-center justify-center p-4"
-        >
           <a
             href="/0"
           >
@@ -46,6 +24,7 @@ exports[`Characters list > shold render 1 card 1`] = `
               />
               <figcaption
                 class="text-center"
+                data-testid="character-name"
               >
                 TestChar
               </figcaption>
@@ -75,6 +54,7 @@ exports[`Characters list > shold render 1 card 1`] = `
             />
             <figcaption
               class="text-center"
+              data-testid="character-name"
             >
               TestChar
             </figcaption>

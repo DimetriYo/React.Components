@@ -1,12 +1,19 @@
-import { describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/react';
 import { useCharacters } from '../../features/CharactersProvider';
 import { CharactersList } from '.';
 import { MemoryRouter } from 'react-router-dom';
 
-vi.mock('../../features/CharactersProvider', () => ({
-  useCharacters: vi.fn(),
-}));
+afterEach(() => {
+  vi.clearAllMocks();
+  cleanup();
+});
+
+beforeAll(() => {
+  vi.mock('../../features/CharactersProvider', () => ({
+    useCharacters: vi.fn(),
+  }));
+});
 
 describe('Characters list', () => {
   it('shold render empty page if there are no cards', () => {
