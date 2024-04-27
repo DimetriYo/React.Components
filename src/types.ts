@@ -12,6 +12,16 @@ export type TCharacter = {
   url: string;
 };
 
+export type TResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: TCharacter[];
+};
+
 export type TAppState = {
   characters: TCharacter[];
   totalPagesCount: number;

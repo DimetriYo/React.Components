@@ -4,7 +4,7 @@ import { massageKitty } from '../PreLoader';
 
 export function ContentLoader() {
   return (
-    <BodyBlinder>
+    <BodyBlinder data-testid="content-loader">
       <img className={style.contentLoader} src={massageKitty} />;
     </BodyBlinder>
   );

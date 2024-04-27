@@ -1,8 +1,17 @@
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
+import { cleanup, render } from '@testing-library/react';
 import { useCharacters } from '../../features/CharactersProvider';
 import { CharactersList } from '.';
 import { MemoryRouter } from 'react-router-dom';
+import { getTestChar } from '../../tests/testedCharacter';
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -15,37 +24,28 @@ beforeAll(() => {
   }));
 });
 
+afterAll(() => {
+  vi.doUnmock('../../features/CharactersProvider');
+});
+
 describe('Characters list', () => {
   it('shold render empty page if there are no cards', () => {
     vi.mocked(useCharacters).mockReturnValue([]);
-    render(<CharactersList />);
-    const component = screen.getByRole('heading');
-    expect(component).toHaveTextContent('Sorry');
+    const { getByTestId } = render(<CharactersList />);
+    expect(getByTestId('empty-chars-list')).toBeInTheDocument();
   });
 
-  it('shold render 1 card', () => {
-    vi.mocked(useCharacters).mockReturnValue([
-      {
-        id: 0,
-        name: 'TestChar',
-        status: 'Alive',
-        species: '',
-        type: '',
-        gender: '',
-        origin: {},
-        location: {},
-        image: '',
-        episode: ['1'],
-        url: '',
-      },
-    ]);
+  it('shold render 3 cards', () => {
+    vi.mocked(useCharacters).mockReturnValue(
+      [...new Array(3)].map(() => getTestChar())
+    );
 
-    const component = render(
+    const { getAllByTestId } = render(
       <MemoryRouter>
         <CharactersList />
       </MemoryRouter>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(getAllByTestId('character-card').length).toBe(3);
   });
 });
