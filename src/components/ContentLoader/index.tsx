@@ -4,8 +4,12 @@ import { massageKitty } from '../PreLoader';
 
 export function ContentLoader() {
   return (
-    <BodyBlinder data-testid="content-loader">
-      <img className={style.contentLoader} src={massageKitty} />;
+    <BodyBlinder>
+      <img
+        data-testid="content-loader"
+        className={style.contentLoader}
+        src={massageKitty}
+      />
     </BodyBlinder>
   );
 }
