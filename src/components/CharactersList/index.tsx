@@ -1,15 +1,20 @@
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { useCharacters } from '../../features/CharactersProvider';
 import { CharacterCard } from '../CharacterCard';
 import { NothingFound } from '../NothingFound';
 
-export function CharactersList() {
-  const characters = useCharacters();
+type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+export function CharactersList(props: Props) {
+  const [characters] = useCharacters();
 
   return (
-    <div className="max-h-full overflow-y-scroll flex-grow basis-1/2">
+    <div {...props}>
       <div className="flex gap-4 flex-wrap items-center justify-center p-4">
         {characters.length ? (
-          characters.map((character) => <CharacterCard key={character.id} {...character} />)
+          characters.map((character) => (
+            <CharacterCard key={character.id} {...character} />
+          ))
         ) : (
           <NothingFound />
         )}

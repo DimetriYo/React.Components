@@ -1,9 +1,14 @@
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { Pagination } from '../Pagination';
 import { SearchField } from './components/SearchField';
 
-export function Header() {
+type Props = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
+
+export function Header(props: Props) {
   return (
-    <header className="flex gap-2 p-4 bg-green-400 border-b-2 border-solid border-cyan-700">
+    <header {...props}>
       <SearchField />
+      <Pagination />
     </header>
   );
 }

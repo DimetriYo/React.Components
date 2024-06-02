@@ -1,6 +1,6 @@
 import style from './style.module.css';
 import { BodyBlinder } from '../BodyBlinder';
-import { massageKitty } from '../PreLoader';
+import massageKitty from '../../assets/massageCat.gif';
 
 export function ContentLoader() {
   return (

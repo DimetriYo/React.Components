@@ -30,15 +30,17 @@ afterAll(() => {
 
 describe('Characters list', () => {
   it('shold render empty page if there are no cards', () => {
-    vi.mocked(useCharacters).mockReturnValue([]);
+    vi.mocked(useCharacters).mockReturnValue([[], 0, () => {}]);
     const { getByTestId } = render(<CharactersList />);
     expect(getByTestId('empty-chars-list')).toBeInTheDocument();
   });
 
   it('shold render 3 cards', () => {
-    vi.mocked(useCharacters).mockReturnValue(
-      [...new Array(3)].map(() => getTestChar())
-    );
+    vi.mocked(useCharacters).mockReturnValue([
+      [...new Array(3)].map(() => getTestChar()),
+      0,
+      () => {},
+    ]);
 
     const { getAllByTestId } = render(
       <MemoryRouter>

@@ -1,21 +1,21 @@
 import { ChangeEventHandler, useEffect, useRef } from 'react';
-import { useSearchTerm, useSetSearchTerm } from '../../SearchTermProvider';
+import { useSearchTerm } from '../../SearchTermProvider';
 
 export function SearchField() {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const setSearchTerm = useSetSearchTerm();
-  const searchTerm = useSearchTerm();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [searchTerm, updateSearchTerm] = useSearchTerm();
 
   useEffect(() => {
-    if (inputRef.current === null) return;
-
-    inputRef.current.value = searchTerm;
-  }, []);
+    if (inputRef.current !== null) {
+      inputRef.current.value = searchTerm || '';
+    }
+  }, [searchTerm]);
 
   const handleBtnClick = () => {
     if (inputRef.current === null) return;
 
-    setSearchTerm(inputRef.current.value);
+    updateSearchTerm(inputRef.current.value);
   };
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -24,8 +24,12 @@ export function SearchField() {
   };
 
   return (
-    <div>
-      <input ref={inputRef} onChange={handleInputChange} />
+    <div className="ml-4 flex gap-3">
+      <input
+        className="rounded px-2"
+        ref={inputRef}
+        onChange={handleInputChange}
+      />
       <button
         onClick={handleBtnClick}
         className="px-2 rounded bg-gray-200 hover:bg-gray-400 active:bg-gray-700 hover:text-white active:text-white "
